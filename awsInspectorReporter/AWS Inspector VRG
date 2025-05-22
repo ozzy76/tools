@@ -1,0 +1,82 @@
+**AWS Inspector Vulnerability Report Generator**
+Understand which assets have critical or high rated issues with a high probability of exploitation in the next 30 days or known exploits. Optionally, review critical or high rated issues - *compliance focused*. Then, see what's been fixed in the environment. 
+
+Threat model regularly, considering existing safeguard coverage and efficacy to stay focused.
+
+**Purpose**
+- Get AWS Inspector data from respective accounts/regions. 
+- Understand the issues to prioritize.
+- Understand the fixed issues.
+
+**Requirements**
+- Node.js v23.11.0 or newer
+- AWS CLI with configured "config" and "credentials"
+- AWS account running Inspector
+- AWS user role with API access
+
+**Using It**
+
+% ./aws-inspector-report.js
+===== AWS Inspector Vulnerability Report Generator =====
+
+Looking for AWS profiles...
+
+Available AWS profiles:
+1. production
+2. development
+3. staging
+
+Select a profile (enter number): 1
+
+Using AWS profile: production
+
+Fetching available AWS regions...
+Could not fetch regions. Using default region list.
+
+Available AWS regions:
+1. us-east-1
+2. us-east-2
+3. us-west-1
+4. us-west-2
+5. ap-south-1
+6. ap-northeast-3
+7. ap-northeast-2
+8. ap-southeast-1
+9. ap-southeast-2
+10. ap-northeast-1
+11. ca-central-1
+12. eu-central-1
+13. eu-west-1
+14. eu-west-2
+15. eu-west-3
+16. eu-north-1
+17. sa-east-1
+
+Select a region (enter number): 1
+
+Using AWS region: us-east-1
+
+Checking if Inspector is available in the selected region...
+
+Select finding type:
+1. Priority active weaknesses (Critical/High severity with exploit available)
+2. All active weaknesses (Critical/High severity)
+3. All closed weaknesses (Critical/High severity)
+
+Select finding type (enter number): 2
+
+Selected option: All active weaknesses
+
+Retrieving Inspector findings. This may take a few minutes...
+Building filter criteria...
+Retrieving findings matching your criteria...
+Retrieving Critical severity findings...
+Found 79 Critical severity findings.
+Retrieving High severity findings...
+Found 100 High severity findings.
+Found a total of 179 matching findings.
+
+Generating CSV report...
+
+Report generated successfully: aws_inspector_all_active_findings_2025-01-22T00-18-14.csv
+Total findings: 179
